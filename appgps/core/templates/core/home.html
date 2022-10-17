@@ -7,55 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arriendo Mi Estacionamiento</title>
     <link href="{% static 'core/css/home.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     {% block head %}{% endblock %}
     
 </head>
 <body>
-    <header style="min-width: 100%;">
-        <div id="logo_header">
-            <img src="{% static 'app/img/masterbike.png' %}" alt="logo">
-            <h2>Arriendo Mi Estacionamiento</h2>
-        </div>
 
-        <div id="menu">
-            <a href="#">Inicio</a>
-            <a href="#">Tienda</a>
-            <a href="#">Carrito</a>
-            <div class="btn-group">
-                <button id="iniciarsesion" type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false" style="color: #ffffff; font-family: 'Secular One', sans-serif;"> <img src="iconos/user_24px.png" alt="" width="28px">
-                    Servicios                
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><button class="dropdown-item" type="button"><a href="#">Arriendos</a></button>
-                    </li>
-                    <li><button class="dropdown-item" type="button"><a href="#">Mantención</a></button>
-                    </li>
-                </ul>
-            </div>
-            <div class="btn-group">
-                <button id="iniciarsesion" type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false" style="color: #ffffff; font-family: 'Secular One', sans-serif;"> 
-                    Mi cuenta               
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><button class="dropdown-item" type="button"><a href="">Historial de compras</a></button>
-                    </li>
-                    <li><button class="dropdown-item" type="button"><a href="#">Notificaciones</a></button>
-                    </li>
-                    <li><button class="dropdown-item" type="button"><a href="#">Ajustes</a></button>
-                    </li>            
-                    <li><button class="dropdown-item" type="button"><a href="#">Cerrar sesión</a></button>
-                    </li>
-                </ul>               
-            </div>
-        </div>
-    </header>
 
     {% block content %}
     {% endblock %}
 
-
+    <div class="menu">
+        <a href="#" >Perfil</a>
+        
+        <div class="btn-group">
+            <button id="iniciarsesion" type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false" style="color: #ffffff; font-family: 'Secular One', sans-serif;"> <img src="iconos/user_24px.png" alt="" width="28px">
+                Session                
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><button class="dropdown-item" type="button"><a href="#" >Cerrar Session</a></button>
+                </li>
+            </ul>
+        </div>
+        <a href="#" >Mapa</a>
+        <a href="#" >Ajustes</a>
+    </div>
+<!-- <div id="abajo">
     <footer>
         <footer class="mt-auto w-100"> 
             <div id="info">
@@ -75,5 +55,15 @@
             </div>
         </footer>
     </footer>
+</div> -->
+
+<div class="ratio ratio-16x9">
+    <div>16x9</div>
+    <img src="https://img.freepik.com/vector-gratis/dibujo-tema-vintage-mapa-mundial_52683-26577.jpg?w=2000" title="YouTube video" allowfullscreen></img>
+</div>
 </body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
 </html>
