@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 * {
     padding: 0;
     margin: 0;
@@ -30,18 +30,18 @@ body>div{
 /* } */
 
 
-.menu>a{
-    text-decoration: none;
+/* .menu>a{ */
+    /* text-decoration: none;
     color: white;
     font-size: 25px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding: 10px;
+    padding: 10px; 
     
 }
-/*  */
+*/
 
      
-.menu{
+/* /* .menu{
     width: 15%;
     background-color: rgb(175, 175, 175); 
     color: white;
@@ -51,6 +51,35 @@ body>div{
     text-align: center;
     justify-content: center;
     /* padding-top: 20%; */
-    /* justify-content: space-around; */
+    /* justify-content: space-around; 
     
-}    
+}  */
+
+
+/* <!-- <div class="ratio ratio-16x9">
+    <img src="https://img.freepik.com/vector-gratis/dibujo-tema-vintage-mapa-mundial_52683-26577.jpg?w=2000" title="YouTube video" allowfullscreen></img>
+</div> --> */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Righteous&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Chakra Petch', sans-serif;
+}
+body {
+    background-image: url("https://p4.wallpaperbetter.com/wallpaper/344/455/615/mclaren-mp4-12c-black-cars-wallpaper-preview.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    
+    
+}
+#iconoRegistro {
+    margin-left: 40%;
+}
+
+
+

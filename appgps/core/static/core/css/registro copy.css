@@ -33,18 +33,27 @@ h1{
     background-color: #585858ec;
     color: white;
     margin-top: 10%;
-    margin-left: 35%;
+    margin-left: 5%;
     margin-bottom: 5%;
     padding: 5%;
     padding-top: 5%;
-    height: 50%;
-    width: 30%;
+    height: 80%;
+    width: 90%;
     justify-content: center;
 }
 
 
 
 #btnRegistrarse{
-    margin-top: 5%;
-    margin-left: 35%;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+#mapa{
+    margin-top: -3%;
+    margin-left: 12%;
+}
+
+#map {
+	height: 500px;
+	width: 100%;
 }
