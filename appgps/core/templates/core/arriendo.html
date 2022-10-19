@@ -1,0 +1,41 @@
+{% extends "core/layout.html" %}
+{% load static %}
+
+{% block title %}Ajustes de usuario{% endblock %}
+
+{% block head %}
+    <link href="{% static 'core/css/arriendo.css'%}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+{% block content %}
+<div  class="ratio ratio-16x9">
+    
+    <h1>ARRIENDO</h1> 
+    <form id="formRegistro" method="post">
+        {% csrf_token %}
+        <div class="form-group" id="formNombre">
+            <label for=" exampleInputEmail1">Nombre</label>
+            <input type="text" class="form-control"     id="inputNombre" name="nombre">
+        </div>
+        <div class="form-group" id="formCorreo">
+            <label for="exampleInputEmail1">Longitud</label>
+            <input type="number" class="form-control" id="inputCorreo" aria-describedby="emailHelp" name="correo">
+        </div>
+        <div class="form-group" id="formContraseña">
+            <label for="exampleInputPassword1">Latitud</label>
+            <input type="number" class="form-control" id="inputContraseña" name="password">
+        </div>
+        <a class="btn btn-info" id="btnRegistrarse" href="#">Buscar</a>
+        {% if messages %}
+        {% for m in messages %}
+        <p id="mensaje" style="color: white;">{{m}}</p>
+        {% endfor %}
+        {% endif %}
+        <a class="btn btn-info" id="btnRegistrarse" href="#">Arrendar</a> 
+         
+        <img src="https://img.freepik.com/vector-gratis/dibujo-tema-vintage-mapa-mundial_52683-26577.jpg?w=1000" id="mapa"></img>
+        
+        
+    </form>
+</div>
+{% endblock %}

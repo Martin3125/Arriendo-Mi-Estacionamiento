@@ -15,7 +15,6 @@ def login(request):
         try:
             newUser = Usuario.objects.get(email = request.POST['email'], pwd = request.POST['password'])
             request.session['email'] = newUser.email 
-            contexto = Producto.objects.all()
             return redirect('home')
         except Usuario.DoesNotExist as e:
             messages.success(request, 'Correo o constraseña no son correctos')
@@ -34,9 +33,13 @@ def registro(request):
                 email = request.POST['correo'],
                 pwd = request.POST['password']
             )
-            Carrito(username = request.POST['correo'], subtotal = 0).save()
-            #se guarda el nuevo usuario en la base de datos
             newUser.save()
             messages.success(request, 'Usuario registrado correctamente')
             return redirect('login')
     return render(request, 'core/registro.html')
+
+def arriendo(request):
+    return render(request, 'core/arriendo.html')
+
+def ajustes(request):
+    return render(request, 'core/ajustes.html')

@@ -4,7 +4,7 @@
 {% block title %}Ajustes de usuario{% endblock %}
 
 {% block head %}
-    <link href="{% static 'core/css/registro copy.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'core/css/home.css'%}" rel="stylesheet" type="text/css">
 
 {% endblock %}
 {% block content %}
@@ -12,7 +12,9 @@
     
     <h1>MAPA</h1> 
     <form id="formRegistro" method="post">
-        <a class="btn btn-info" id="btnRegistrarse" href="#">Buscar</a>   
+        
+        <a class="btn btn-info" id="arrendar" href="{% url 'arriendo'%}">Arrendar</a>
+        <a class="btn btn-info" id="btnRegistrarse" href="#">Buscar</a>
         <img src="https://img.freepik.com/vector-gratis/dibujo-tema-vintage-mapa-mundial_52683-26577.jpg?w=1000" id="mapa"></img>
         
         

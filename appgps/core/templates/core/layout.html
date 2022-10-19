@@ -21,9 +21,9 @@
             <img src="{% static 'core/img/logo.png' %}" alt="logo" width="100" id="logo">
         </header> 
         <img src="{% static 'core/img/logoPerfil.png' %}" alt="" width="100"><a href="#" >Perfil</a>
-        <img src="{% static 'core/img/logoMapa.png' %}" alt="" width="100"><a href="#" >Mapa</a>
-        <img src="{% static 'core/img/logoAjustes.png' %}" alt="" width="100"><a href="#" >Ajustes</a>
-        <img src="{% static 'core/img/logoSesion.png' %}" alt="" width="100"><a href="#" >Cerrar sesión</a>
+        <img src="{% static 'core/img/logoMapa.png' %}" alt="" width="100"><a href="{% url 'home' %}" >Mapa</a>
+        <img src="{% static 'core/img/logoAjustes.png' %}" alt="" width="100"><a href="{% url 'ajustes' %}" >Ajustes</a>
+        
 
     </div>
 <!-- <div id="abajo">
