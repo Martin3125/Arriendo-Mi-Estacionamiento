@@ -9,15 +9,17 @@
 body {
     background-image: url("https://p4.wallpaperbetter.com/wallpaper/344/455/615/mclaren-mp4-12c-black-cars-wallpaper-preview.jpg");
     background-repeat: no-repeat;
-    background-position: center center; 
+    background-position: center center;
     background-size: cover;
     background-attachment: fixed;
     
 }
 
-#iconoRegistro {
-    margin-left: 40%;
-}
+#iconoLogin{
+    margin-top: -5%;
+    margin-left: 30%;
+
+}  
 
 h1{
     font-family: 'Archivo Black', sans-serif;
@@ -29,49 +31,59 @@ h1{
     color: white;
 }
 
-#formRegistro {
+#formLogin {
     background-color: #585858ec;
     color: white;
     margin-top: 10%;
     margin-left: 35%;
     margin-bottom: 5%;
     padding: 5%;
-    padding-top: 10%;
-    padding-left: 10%;
-    height: 40%;
+    height: 50%;
     width: 30%;
-    justify-content: center;
 }
 
 
-
+#btnIniciarSesion {
+    margin-top: 5%;
+    margin-left: 10%;
+    
+    
+}
 #btnRegistrarse{
-    margin-top: 1%;
-    margin-left: 1%;
+    margin-top: -19%;
+    margin-left: 50%;
+    
 }
 
-#mapa{
-    margin-top: -3%;
-    margin-left: 0%;
-}
-#arrendar{
-    margin-left: 5%;
-    margin-top: 20%;
-}
-#map {
-	height: 500px;
-	width: 100%;
-}
 
+.grid-container {
+    display: grid;
+    grid-template-rows: 100px 100px;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+  }
 
 @media only screen and (max-width: 1500px ){
     #formLogin {
-        margin-top: 20%;
-        margin-left: 35%;
+        margin-top: 12%;
+        margin-left: 32%;
         margin-bottom: 5%;
         padding: 5%;
-        height: 50%;
+        height: 75%;
         width: 36%;
         justify-content: center;
     }
-} 
+
+    .botones{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #btnRegistrarse{
+        margin: 1px;
+    }
+    #btnIniciarSesion{
+        margin-left: 0%;
+        margin-bottom: 2px;
+    }
+}

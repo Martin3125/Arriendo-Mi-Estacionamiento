@@ -17,6 +17,7 @@ body {
 body>div{
 
     display: flex;
+    justify-content: start;
 }
 
 .menu>a{

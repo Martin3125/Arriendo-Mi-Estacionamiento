@@ -23,23 +23,100 @@ def login(request):
 def registro(request):
     if request.method == 'POST':
         #estructura de condicion que verifica si el usuario que se intenta registrar existe
-        if Usuario.objects.filter(email = request.POST['correo']).exists(): # se verifica la existencia por el campo de email
+        if Usuario.objects.filter(email = request.POST['email']).exists(): # se verifica la existencia por el campo de email
             messages.success(request, 'El usuario ingresado ya existe')
         else:
             #creacion del nuevo usuario, entre [] se coloca el atributo "name" de los input en el html
             newUser = Usuario(
                 nombre = request.POST['nombre'],
                 apellido = request.POST['apellido'],
-                email = request.POST['correo'],
-                pwd = request.POST['password']
+                email = request.POST['email'],
+                pwd = request.POST['password'],
+                tipo_usuario = False
             )
             newUser.save()
             messages.success(request, 'Usuario registrado correctamente')
             return redirect('login')
     return render(request, 'core/registro.html')
 
+
+
+# def register(request):
+#         if request.method == 'POST':
+#             form = UserRegisterForm(request.POST)
+#             if form.is_valid():
+#                 form.save()
+#                 username = form.cleaned_data['username']
+#                 messages.success(request, f'Usuario {username} creado')
+#                 return redirect('login')
+#         else:
+#             form = UserRegisterForm()
+
+#         context = { 'form' : form }
+#         return render(request, 'core/registro.html', context) 
+
 def arriendo(request):
     return render(request, 'core/arriendo.html')
 
 def ajustes(request):
     return render(request, 'core/ajustes.html')
+
+def paginaCuenta(request):
+    return render(request, 'core/eliminarCuenta.html')
+    
+def eliminarCuenta(request, email):
+    usuarios = Usuario.objects.get(email=email)
+    usuarios.delete()
+    return redirect('login')
+    
+def perfil(request):
+    usuario = Usuario.objects.filter(email = request.session['email'])
+    return render(request, 'core/perfil.html', {'usuario':usuario})
+
+def editarPerfil(request):
+    # email=request.POST['email']
+    # nombre=request.POST['nombre']
+    # apellido=request.POST['apellido']
+    
+    # usuario = Usuario.objects.get(email=email)
+    # usuario.nombre = nombre
+    # usuario.apellido = apellido
+    # usuario.save()
+    
+
+    
+    email = Usuario.objects.filter(email = request.session['email'])
+    if request.method == 'POST':
+        oldemail = email.objects.get(email = request.Post['email'] )
+        if request.POST['newdesc'] != '':
+            oldemail.descripcion = request.POST['newdesc']
+            oldemail.save()
+        return redirect('perfil')
+    else:        
+        return render(request, 'core/editarPerfil.html', {"email":email})
+
+
+def crudUsuario(request):
+    contexto = {'usuario': Usuario.objects.all()}
+    return render(request, 'core/crudUsuario.html', contexto)
+
+# def actualizarDescuento(request, id_descuento):
+#     descuento = Descuento.objects.get(id_descuento=id_descuento)
+#     return render(request, 'core/actualizar_descuento.html', {'descuento':descuento})
+
+# def editarDescuento(request):
+#     id_descuento=request.POST['id_descuento']
+#     nombre=request.POST['nombre']
+#     porcentaje=request.POST['porcentaje']
+    
+#     descuento = Descuento.objects.get(id_descuento=id_descuento)
+#     descuento.nombre = nombre
+#     descuento.porcentaje = porcentaje
+#     descuento.save()
+    
+#     return redirect('crudDescuento')
+
+def eliminarUsuario(request, email):
+    usuario = Usuario.objects.get(email=email)
+    usuario.delete()
+    return redirect('crudUsuario')

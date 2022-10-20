@@ -1,0 +1,59 @@
+{% extends "core/layout.html" %}
+{% load static %}
+
+{% block title %}Ajustes de usuario{% endblock %}
+
+{% block head %}
+    <link href="{% static 'core/css/crudUsuario.css'%}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+{% block content %}
+<div class="ratio ratio-16x9">
+    <div class="tabla">
+        <table class="table" style="color:white">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Gmail</th>
+                    <th scope="col">Tipo Usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in usuario %}
+                <tr>
+                    <th scope="row">{{ i.nombre }}</th>
+                    <td>{{ i.apellido }}</td>
+                    <td>{{ i.email }}</td>
+                    <td>
+                        <!-- <a href="#"><button type="submit" class="btn btn-info" id="btnEliminar">Eliminar</button></a> -->
+                        <a href="eliminarUsuario/{{ i.email }}" class="btn btn-info">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- <div class="parte1">
+        <form id="formulario" action="/registrarDescuento/" method="post">
+            {% csrf_token %}
+            <h1 style="font-size: 35px;"> •Agregar descuento</h1>
+            <label for="id">Id: </label>
+            <input type="number" name="id" id="id" class="form-control">
+            <label for="nombre">Nombre del descuento: </label>
+            <input type="text" name="nombre" id="nombre" class="form-control">
+            <h2 id="mensaje1"></h2>
+            <label for="porcentaje">Porcentaje de descuento (%): </label>
+            <input type="number" name="porcentaje" id="porcentaje" class="form-control" max="100">
+            <h2 id="mensaje2"></h2>
+            <label for="producto">Producto: </label>
+            <input type="number" name="producto" id="producto" class="form-control">
+            <div class="botones">
+                <button type="submit" id="agregar" class="btn btn-primary"> Agregar</button>
+                <button type="reset" id="limpiar" class="btn btn-primary"
+                    style="font-size: 18px;   width: 100px; border-color: black;"> Limpiar</button>
+            </div>
+        </form>
+    </div> -->
+</div>
+
+{% endblock %}

@@ -25,18 +25,26 @@
         </div>
         <div class="form-group" id="formCorreo">
             <label for="exampleInputEmail1">Correo electrónico</label>
-            <input type="email" class="form-control" id="inputCorreo" aria-describedby="emailHelp" name="correo">
+            <input type="email" class="form-control" id="inputCorreo" aria-describedby="emailHelp" name="email">
         </div>
         <div class="form-group" id="formContraseña">
             <label for="exampleInputPassword1">Contraseña</label>
             <input type="password" class="form-control" id="inputContraseña" name="password">
         </div>
-        <button type="submit" class="btn btn-info" id="btnRegistrarse">Registrarse</button>
+        <!-- {{ form.as_p }} -->
+       
+        <div id="boton">
+            <button type="submit" class="btn btn-info" id="btnRegistrarse">Registrarse</button>
+            <a href="{% url 'login' %}" class="btn btn-info" id="atras">Atrás</a>
+            
+        </div>
         
         {% if messages %}
-        {% for m in messages %}
-        <p id="mensaje" style="color: white;">{{m}}</p>
-        {% endfor %}
+            {% for m in messages %}
+            <div class="notification {{ message.tags }}">
+                {{m}}
+            </div>
+            {% endfor %}
         {% endif %}
     </form>
 </div>

@@ -20,33 +20,12 @@
         <header>
             <img src="{% static 'core/img/logo.png' %}" alt="logo" width="100" id="logo">
         </header> 
-        <img src="{% static 'core/img/logoPerfil.png' %}" alt="" width="100"><a href="#" >Perfil</a>
+        <img src="{% static 'core/img/logoPerfil.png' %}" alt="" width="100"><a href="{% url 'perfil' %}" >Perfil</a>
         <img src="{% static 'core/img/logoMapa.png' %}" alt="" width="100"><a href="{% url 'home' %}" >Mapa</a>
         <img src="{% static 'core/img/logoAjustes.png' %}" alt="" width="100"><a href="{% url 'ajustes' %}" >Ajustes</a>
         
 
     </div>
-<!-- <div id="abajo">
-    <footer>
-        <footer class="mt-auto w-100"> 
-            <div id="info">
-                <h3>Contacto: +56 9 0000 0000</h3>
-                <h3>Correo: contacto@masterbikes.cl</h3>
-                <div id="redes_sociales">
-                    <h3>Redes sociales:</h3>
-                    <a href=""><img src="{% static 'app/img/facebook.png' %}" alt="facebook"></a>
-                    <a href=""><img src="{% static 'app/img/instagram.png' %}" alt="instagram"></a>
-                    <a href=""><img src="{% static 'app/img/twitter.png' %}" alt="twitter"></a>
-                </div>
-                <h3>© Informanía 2022</h3>
-            </div>
-
-            <div id="logo_footer">
-                <img src="{% static 'app/img/masterbike.png' %}" alt="logo">
-            </div>
-        </footer>
-    </footer>
-</div> -->
 
 {% block content %}
 {% endblock %}

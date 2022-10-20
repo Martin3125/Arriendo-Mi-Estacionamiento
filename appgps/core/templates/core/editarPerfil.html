@@ -1,0 +1,50 @@
+{% extends "core/layout.html" %}
+{% load static %}
+
+{% block title %}Ajustes de usuario{% endblock %}
+
+{% block head %}
+    <link href="{% static 'core/css/editar_perfil.css' %}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+{% block content %}
+
+<div  class="ratio ratio-16x9" >
+    <h1>EDITAR</h1>
+    <form id="formPerfil">
+        {% csrf_token %}
+        <div id="iconoLogin">   
+            <img src="{% static 'core/img/icPerfil.png' %}" alt="login" width="120">
+        </div>
+    
+        <div id="perfil_info">
+            {% for i in email %}
+            <div class="form-group" id="formNombre">
+                <label for=" exampleInputEmail1">Nombre:{{ i.nombre }}</input> </label>
+                <input type="text" class="form-control"     id="inputNombre" name="nombre">
+            
+            </div>
+            <div class="form-group" id="formNombre">
+                <label for=" exampleInputEmail1">Apellido: {{ i.apellido }}</label>
+                <input type="text" class="form-control"     id="inputNombre" name="apellido">
+            </div>
+            <div class="form-group" id="formCorreo">
+                <label for="exampleInputEmail1">Correo electrónico: {{ i.email }}</label>
+            </div>
+                <input type="email" class="form-control" id="inputCorreo" aria-describedby="emailHelp" name="correo">
+            <button type="submit" class="btn btn-info" id="btnRegistrarse">Guardar</button>
+            {% endfor %}
+            {% if messages %}
+            {% for m in messages %}
+            <p id="mensaje" style="color: white;">{{m}}</p>
+            {% endfor %}
+            {% endif %} 
+        </div>
+        <script>
+            function mostrarEmail(email){
+                document.getElementById("correo").innerHTML = "Email: "+email;
+            }
+        </script>
+{% endblock %}
+            

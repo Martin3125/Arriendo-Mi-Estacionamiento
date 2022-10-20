@@ -4,7 +4,7 @@
 {% block title %}Ajustes de usuario{% endblock %}
 
 {% block head %}
-    <link href="{% static 'core/css/registro copy 3.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'core/css/ajustes1.css'%}" rel="stylesheet" type="text/css">
 
 {% endblock %}
 {% block content %}
@@ -13,7 +13,10 @@
     <h1>AJUSTES</h1> 
     <form id="formRegistro" method="post">
         
-        <a class="btn btn-info" id="cerrar" href="{% url 'login' %}">Cerrar cession</a>
+        <div id="boton">
+            <a class="btn btn-info" id="eliminarCuenta" href="{% url 'crudUsuario' %}">Usuarios</a>
+            <a class="btn btn-info" id="cerrar" href="{% url 'login' %}">Cerrar sesión</a>
+        </div>
         
         
         
