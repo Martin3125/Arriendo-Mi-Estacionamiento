@@ -40,21 +40,6 @@ def registro(request):
     return render(request, 'core/registro.html')
 
 
-
-# def register(request):
-#         if request.method == 'POST':
-#             form = UserRegisterForm(request.POST)
-#             if form.is_valid():
-#                 form.save()
-#                 username = form.cleaned_data['username']
-#                 messages.success(request, f'Usuario {username} creado')
-#                 return redirect('login')
-#         else:
-#             form = UserRegisterForm()
-
-#         context = { 'form' : form }
-#         return render(request, 'core/registro.html', context) 
-
 def arriendo(request):
     return render(request, 'core/arriendo.html')
 
@@ -74,15 +59,6 @@ def perfil(request):
     return render(request, 'core/perfil.html', {'usuario':usuario})
 
 def editarPerfil(request):
-    # email=request.POST['email']
-    # nombre=request.POST['nombre']
-    # apellido=request.POST['apellido']
-    
-    # usuario = Usuario.objects.get(email=email)
-    # usuario.nombre = nombre
-    # usuario.apellido = apellido
-    # usuario.save()
-    
 
     
     email = Usuario.objects.filter(email = request.session['email'])
@@ -100,21 +76,6 @@ def crudUsuario(request):
     contexto = {'usuario': Usuario.objects.all()}
     return render(request, 'core/crudUsuario.html', contexto)
 
-# def actualizarDescuento(request, id_descuento):
-#     descuento = Descuento.objects.get(id_descuento=id_descuento)
-#     return render(request, 'core/actualizar_descuento.html', {'descuento':descuento})
-
-# def editarDescuento(request):
-#     id_descuento=request.POST['id_descuento']
-#     nombre=request.POST['nombre']
-#     porcentaje=request.POST['porcentaje']
-    
-#     descuento = Descuento.objects.get(id_descuento=id_descuento)
-#     descuento.nombre = nombre
-#     descuento.porcentaje = porcentaje
-#     descuento.save()
-    
-#     return redirect('crudDescuento')
 
 def eliminarUsuario(request, email):
     usuario = Usuario.objects.get(email=email)
