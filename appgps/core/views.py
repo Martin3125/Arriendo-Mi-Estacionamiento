@@ -14,9 +14,9 @@ def login(request):
     if request.method == 'POST':
         try:
             newUser = Usuario.objects.get(email = request.POST['email'], pwd = request.POST['password'])
-            request.session['email'] = newUser.email 
+            request.session['email'] = newUser.email
             return redirect('home')
-        except Usuario.DoesNotExist as e:
+        except Usuario.DoesNotExist as e: 
             messages.success(request, 'Correo o constraseña no son correctos')
     return render(request, 'core/login.html')
 

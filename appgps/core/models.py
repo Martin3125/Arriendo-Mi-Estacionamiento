@@ -9,3 +9,4 @@ class Usuario(models.Model):
     email = models.EmailField(primary_key=True, unique=True)
     pwd = models.CharField(null=False, max_length=12)
     tipo_usuario = models.BooleanField( max_length=16, default=False)
+

@@ -12,11 +12,19 @@
     
     <h1>AJUSTES</h1> 
     <form id="formRegistro" method="post">
-        
+        {% csrf_token %}
         <div id="boton">
+            
+            {% if request.session.email == "" %}
             <a class="btn btn-info" id="eliminarCuenta" href="{% url 'login' %}">Login</a>
-            <a class="btn btn-info" id="eliminarCuenta" href="{% url 'crudUsuario' %}">Usuarios</a>
-            <a class="btn btn-info" id="cerrar" href="{% url 'login' %}">Cerrar sesión</a>
+            {% endif %}
+
+            {% if request.session.email == "ADMIN@gmail.com" %}
+                <a class="btn btn-info" id="eliminarCuenta" href="{% url 'crudUsuario' %}">Usuarios</a>
+            {% endif %}
+
+            <a class="btn btn-info" id="cerrar" href="{% url 'login' %}">Cerrar sesión</a> 
+            
         </div>
         
         
