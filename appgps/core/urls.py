@@ -12,6 +12,7 @@ urlpatterns = [
     path('ajustes', ajustes, name='ajustes'),
     path('perfil', perfil, name='perfil'),
     path('editarPerfil', editarPerfil, name="editarPerfil"),
+    path('cerrarSesion', cerrarSesion, name="cerrarSesion"),
     #funciones del crud
     path('crudUsuario', crudUsuario, name='crudUsuario'),
     path('eliminarUsuario/<email>', eliminarUsuario, name='eliminarUsuario'),

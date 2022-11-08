@@ -54,3 +54,11 @@ h1{
         margin-left: 1%;
         margin-top: 1%;
     }
+
+    #mensaje{
+        text-align: center;
+        color: white;
+        width: 100%;
+        padding: 10%;
+        font-size: x-large;
+    }

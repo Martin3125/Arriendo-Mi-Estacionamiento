@@ -2,6 +2,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect, render
+
 from .models import *
 
 # Create your views here.
@@ -58,18 +59,29 @@ def perfil(request):
     usuario = Usuario.objects.filter(email = request.session['email'])
     return render(request, 'core/perfil.html', {'usuario':usuario})
 
-def editarPerfil(request):
 
-    
-    email = Usuario.objects.filter(email = request.session['email'])
-    if request.method == 'POST':
-        oldemail = email.objects.get(email = request.Post['email'] )
-        if request.POST['newdesc'] != '':
-            oldemail.descripcion = request.POST['newdesc']
-            oldemail.save()
-        return redirect('perfil')
-    else:        
-        return render(request, 'core/editarPerfil.html', {"email":email})
+# promo = Promo.objects.filter(id_promo = code)
+#     if request.method == 'POST':
+#         oldPromo = Promo.objects.get(id_promo = code)
+#         if request.POST['newdesc'] != '':
+#             oldPromo.descripcion = request.POST['newdesc']
+#             oldPromo.save()
+#         return redirect('crudPromos')
+#     else:        
+#         return render(request, 'app/editarPromo.html', {"promo":promo})  
+
+def editarPerfil(request):
+    nombre = request.POST['nombre']
+    apellido = request.POST['apellido']
+
+    oldemail = Usuario.objects.get(email = request.session['email'])  
+    oldemail.nombre = nombre
+    oldemail.apellido = apellido
+    oldemail.save()
+    messages.success(request, 'Usuario: ' + nombre +'Actualizado correctamente!')
+    return redirect('perfil')
+    # else:        
+    #     return render(request, 'core/editarPerfil.html', {"email":email})
 
 
 def crudUsuario(request):
@@ -81,3 +93,13 @@ def eliminarUsuario(request, email):
     usuario = Usuario.objects.get(email=email)
     usuario.delete()
     return redirect('crudUsuario')
+
+def cerrarSesion(request):
+    del request.session['email']
+    request.session.modified = True
+    messages.success(request, 'Sesion Cerrada')
+    return render(request, 'core/ajustes.html')
+
+
+
+

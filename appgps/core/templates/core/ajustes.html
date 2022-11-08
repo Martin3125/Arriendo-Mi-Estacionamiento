@@ -4,7 +4,7 @@
 {% block title %}Ajustes de usuario{% endblock %}
 
 {% block head %}
-    <link href="{% static 'core/css/ajustes2.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'core/css/ajuste.css'%}" rel="stylesheet" type="text/css">
 
 {% endblock %}
 {% block content %}
@@ -14,17 +14,26 @@
     <form id="formRegistro" method="post">
         {% csrf_token %}
         <div id="boton">
-            
-            {% if request.session.email == "" %}
-            <a class="btn btn-info" id="eliminarCuenta" href="{% url 'login' %}">Login</a>
-            {% endif %}
 
             {% if request.session.email == "ADMIN@gmail.com" %}
                 <a class="btn btn-info" id="eliminarCuenta" href="{% url 'crudUsuario' %}">Usuarios</a>
             {% endif %}
 
-            <a class="btn btn-info" id="cerrar" href="{% url 'login' %}">Cerrar sesión</a> 
+            {% if "email" in request.session %}
+                <a class="btn btn-info" id="cerrar" href="{% url 'cerrarSesion' %}">Cerrar sesión</a> 
+            {% else %}
+                <a class="btn btn-info" id="eliminarCuenta" href="{% url 'login' %}">Login</a>
+            {% endif %}
+
             
+            {% if messages %}
+            {% for m in messages %}
+                <div>
+                    <label id="mensaje" >{{m}}</label>
+                </div>
+            {% endfor %}
+            {% endif %}
+
         </div>
         
         
