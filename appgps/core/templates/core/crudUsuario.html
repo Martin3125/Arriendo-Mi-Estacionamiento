@@ -14,8 +14,8 @@
             <thead>
                 <tr>
                     <th scope="col">Username</th>
-                    <th scope="col">Gmail</th>
-                    <th scope="col">Tipo Usuario</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Email</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +26,9 @@
                     <td>{{ i.email }}</td>
                     <td>
                         <!-- <a href="#"><button type="submit" class="btn btn-info" id="btnEliminar">Eliminar</button></a> -->
+                        {% if i.nombre != "ADMIN" %}
                         <a href="eliminarUsuario/{{ i.email }}" class="btn btn-info">Eliminar</a>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}
