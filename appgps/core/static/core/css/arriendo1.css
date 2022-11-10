@@ -50,8 +50,9 @@ h1{
     margin-left: 1%;
 }
 #mapa{
-    margin-top: -130%;
+    margin-top: -100%;
     margin-left: 120%;
+    height: 500px;
     width: 350%;
 }
 
