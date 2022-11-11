@@ -56,7 +56,18 @@ h1{
     width: 350%;
 }
 
-#map {
-	height: 500px;
-	width: 100%;
-}
+
+
+#map_container{
+    position: relative;
+  }
+  #map{
+    margin-top: -100%;
+    margin-left: 120%;
+    height: 500px;
+    width: 350%;
+      overflow: hidden;
+      padding-bottom: 22.25%;
+      padding-top: 30px;
+      position: relative;
+  }

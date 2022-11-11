@@ -2,7 +2,11 @@ from datetime import datetime
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect, render
-
+# from django.utils import simplejson
+# from django.http import HttpResponse
+# from django.shortcuts import render_to_response
+# from django.template import RequestContext
+# from django.utils.timesince import timesince
 from .models import *
 
 # Create your views here.
@@ -100,6 +104,39 @@ def cerrarSesion(request):
     messages.success(request, 'Sesion Cerrada')
     return render(request, 'core/ajustes.html')
 
+# def arrendar(request):
+#     form = UbicacionForm()
+#     Ubicaciones = Ubicacion.objects.all().order_by('-fecha')
+#     return render_to_response('arriendo.html', {'form': form}, context_instance=RequestContext(request))
+
+# def coords_save(request):
+#     if request.is_ajax():
+#         form = UbicacionForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             Ubicaciones = Ubicacion.objects.all().order_by('-fecha')
+#             data ='<ul>'
+#             for ubicacion in Ubicaciones:
+#                 data += '<li>%s %s -hace %s<li>' %(ubicacion.nombre, ubicacion.user, timesince(ubicacion.fecha))
+#             data +='<ul>'
+#             return HttpResponse(simplejson.dumps({'ok' :True, 'msg':data }), mimetype='application/json')
+#         else:
+#             return HttpResponse(simplejson.dumps({'ok' :False, 'msg': 'Debes llenar todos los campos'}), mimetype='application/json')
 
 
-
+def arriendo(request):
+    if request.method == 'POST':
+        #estructura de condicion que verifica si el usuario que se intenta registrar existe
+        if Ubicacion.objects.filter(nombre = request.POST['nombre']).exists(): # se verifica la existencia por el campo de email
+            messages.success(request, 'El usuario ingresado ya existe')
+        else:
+            #creacion del nuevo usuario, entre [] se coloca el atributo "name" de los input en el html
+            newUB = Ubicacion(
+                nombre = request.POST['nombre'],
+                lat =request.POST['lat'],
+                lng = request.POST['lng'],
+            )
+            newUB.save()
+            messages.success(request, 'Usuario registrado correctamente')
+            return redirect('home')
+    return render(request, 'core/arriendo.html')
