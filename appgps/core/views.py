@@ -2,11 +2,11 @@ from datetime import datetime
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect, render
-# from django.utils import simplejson
-# from django.http import HttpResponse
-# from django.shortcuts import render_to_response
-# from django.template import RequestContext
-# from django.utils.timesince import timesince
+    # from django.utils import json as simplejson
+    # from django.http import HttpResponse
+    # from django.shortcuts import render_to_response
+    # from django.template import RequestContext
+    # from django.utils.timesince import timesince
 from .models import *
 
 # Create your views here.
@@ -124,19 +124,32 @@ def cerrarSesion(request):
 #             return HttpResponse(simplejson.dumps({'ok' :False, 'msg': 'Debes llenar todos los campos'}), mimetype='application/json')
 
 
-def arriendo(request):
-    if request.method == 'POST':
-        #estructura de condicion que verifica si el usuario que se intenta registrar existe
-        if Ubicacion.objects.filter(nombre = request.POST['nombre']).exists(): # se verifica la existencia por el campo de email
-            messages.success(request, 'El usuario ingresado ya existe')
-        else:
-            #creacion del nuevo usuario, entre [] se coloca el atributo "name" de los input en el html
-            newUB = Ubicacion(
-                nombre = request.POST['nombre'],
-                lat =request.POST['lat'],
-                lng = request.POST['lng'],
-            )
-            newUB.save()
-            messages.success(request, 'Usuario registrado correctamente')
-            return redirect('home')
-    return render(request, 'core/arriendo.html')
+# def arriendo(request):
+#     if request.method == 'POST':
+#             #creacion del nuevo usuario, entre [] se coloca el atributo "name" de los input en el html
+#             newUB = Ubicacion(
+#                 nombre = request.POST['nombre'],
+#                 lat =request.POST['lat'],
+#                 lng = request.POST['lng'],
+#                 precio = request.POST['precio'],
+#             )
+
+            
+#             newUB.save()
+#             messages.success(request, 'Usuario registrado correctamente')
+#             return redirect('home')
+#     return render(request, 'core/arriendo.html')
+
+
+def addUbicacion(request):
+    nombre = request.POST['nombre']
+    lat = request.POST['lat']
+    lng = request.POST['lng']
+    precio = request.POST['precio']
+    usuario= request.session['email']
+    fecha = datetime.now()
+    newUbicacion = Ubicacion(nombre =nombre, lat = lat, lng = lng,precio = precio,user = usuario, fecha = fecha)
+    newUbicacion.save()
+    print('funca')
+    return redirect('arriendo')
+

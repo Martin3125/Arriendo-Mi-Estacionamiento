@@ -6,6 +6,7 @@
 {% block head %}
     
     <link href="{% static 'core/css/arriendo1.css'%}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'core/js/mapa.js'%}" type="text/js">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>   
     
 {% endblock %}
@@ -14,7 +15,7 @@
 <div  class="ratio ratio-16x9">
     
     <h1>ARRIENDO</h1> 
-    <form id="formRegistro" method="post" action="coords/save">
+    <form id="formRegistro" action="/addUbicacion/" method="post">
         {% csrf_token %}
         <div class="form-group" id="formNombre">
             <label for=" exampleInputEmail1">Nombre</label>
@@ -22,13 +23,18 @@
         </div>
         <div class="form-group" id="formCorreo">
             <label for="exampleInputEmail1">Longitud</label>
-            <input type="number" class="form-control" id="inputLongitud" aria-describedby="emailHelp" name="correo">
+            <input type="text" class="form-control" id="inputLongitud" name="lat" readonly>
         </div>
         <div class="form-group" id="formContraseña">
             <label for="exampleInputPassword1">Latitud</label>
-            <input type="number" class="form-control" id="inputLatitud" name="password">
+            <input type="text" class="form-control" id="inputLatitud" name="lng" readonly>
         </div>
-        <a type="submit" class="btn btn-info" id="btnRegistrarse" href="#">Guardar</a>
+        <div class="form-group" id="formPrecio">
+            <label for="exampleInputPassword1">Valor por hora:</label>
+            <input type="number" class="form-control" id="inputPrecio" name="precio">
+        </div>
+        <button type="submit" class="btn btn-success" id="btnGuardar">Guardar</button>
+        
         {% if messages %}
         {% for m in messages %}
         <p id="mensaje" style="color: white;">{{m}}</p>
@@ -53,6 +59,7 @@
        
         
         <!-- <script src="{% static 'core/js/mapa.js'%}" type="module"></script>
+
         <script 
         async  
         defer
@@ -100,20 +107,20 @@
                     $('#inputLongitud').val(markerCoords.lng());
                     $('#inputLatitud').val(markerCoords.lat());
                 }
-                $('#formRegistro').submit(function(e){
-                    e.preventDefault();
-                    $.post('/coords/save', $(this).serialize(), function(data){
-                        if(data.ok)
-                        {
-                            $('#data').html(data.msg);
-                            $('#formRegistro').each(function(){this.reset(); });
+                // $('#formRegistro').submit(function(e){
+                //     e.preventDefault();
+                //     $.post('addUbicacion', $(this).serialize(), function(data){
+                //         if(data.ok)
+                //         {
+                //             // $('#data').html(data.msg);
+                //             $('#formRegistro').each(function(){this.reset(); });
                         
-                        } else {
-                            alert(data.msg);
-                        }
+                //         } else {
+                //             alert(data.msg);
+                //         }
 
-                    },'json');
-                });
+                //     },'json');
+                // });
                 // var stylesArray = [
                 //     {
                         
@@ -129,7 +136,7 @@
 
             }
             </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUaZKalsm_V3MUSPtRUnYTopFP7nD8XAY&callback=initMap&getError&getCoords%getMarkerCoords" async defer></script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUaZKalsm_V3MUSPtRUnYTopFP7nD8XAY&callback=initMap&getCoords%getError&getMarkerCoords" async defer></script>
             </script>
        
     </form>
