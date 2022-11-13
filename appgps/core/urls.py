@@ -17,5 +17,5 @@ urlpatterns = [
     path('crudUsuario', crudUsuario, name='crudUsuario'),
     path('eliminarUsuario/<email>', eliminarUsuario, name='eliminarUsuario'),
     path('addUbicacion/', addUbicacion, name = "addUbicacion"),
-
+    path('obtener', obtener, name="obtener")
 ]

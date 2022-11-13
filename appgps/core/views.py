@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect, render
@@ -151,5 +152,14 @@ def addUbicacion(request):
     newUbicacion = Ubicacion(nombre =nombre, lat = lat, lng = lng,precio = precio,user = usuario, fecha = fecha)
     newUbicacion.save()
     print('funca')
-    return redirect('arriendo')
+    return redirect('home')
 
+
+def obtener(request):
+    ubicaciones = list(Ubicacion.objects.values())
+    if (len(ubicaciones) > 0):
+        data = {'message': "Success", 'ubicaciones': ubicaciones}
+    else:
+        data = {'message': "Not Found"}
+
+    return JsonResponse(data)
