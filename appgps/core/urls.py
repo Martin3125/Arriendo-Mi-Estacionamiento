@@ -10,12 +10,22 @@ urlpatterns = [
     path('registro', registro, name='registro'),
     path('arriendo', arriendo, name='arriendo'),
     path('ajustes', ajustes, name='ajustes'),
-    path('perfil', perfil, name='perfil'),
-    path('editarPerfil', editarPerfil, name="editarPerfil"),
+    
+    
     path('cerrarSesion', cerrarSesion, name="cerrarSesion"),
-    #funciones del crud
+    path('addUbicacion/', addUbicacion, name = "addUbicacion"),
+    path('obtener', obtener, name="obtener"),
+
+    #funciones del crud Usuario
     path('crudUsuario', crudUsuario, name='crudUsuario'),
     path('eliminarUsuario/<email>', eliminarUsuario, name='eliminarUsuario'),
-    path('addUbicacion/', addUbicacion, name = "addUbicacion"),
-    path('obtener', obtener, name="obtener")
+
+    #funciones del crud Ubicacion
+    path('crudUbicaciones', crudUbicaciones, name='crudUbicaciones'),
+    path('eliminarUbicacion/<nombre>', eliminarUbicacion, name='eliminarUbicacion'),
+    
+     #funciones del crud Perfil
+    path('editarPerfil/', editarPerfil, name="editarPerfil"),
+    path('actualizarPerfil/<email>', actualizarPerfil, name='actualizarPerfil'),
+    path('perfil', perfil, name='perfil'),
 ]

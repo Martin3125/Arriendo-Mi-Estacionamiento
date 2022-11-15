@@ -57,9 +57,12 @@ h1{
     width: 100%;
 }
 #arrendar{
-    margin-left: 1%;
+    display: flex;
+    margin-top: 1%;
+    margin-left: 45%;
     height: 10%;
     width: 10%;
+    padding-left: 1.9%;
 }
 #botones{
     display: flex;
@@ -80,3 +83,7 @@ h1{
       padding-top: 30px;
       position: relative;
   }
+
+h2{
+    text-align: center;
+}

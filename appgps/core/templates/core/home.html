@@ -4,7 +4,7 @@
 {% block title %}Ajustes de usuario{% endblock %}
 
 {% block head %}
-<link href="{% static 'core/css/home.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'core/css/home1.css' %}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="{% static 'core/js/mapa.js'%}" type="text/js">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
@@ -19,9 +19,15 @@
         {% csrf_token %}
         <div id="map_container"></div>
         <div id="map"></div>
+        {% if "email" in request.session %}
         <div>
-            <a class="btn btn-info" id="arrendar" href="{% url 'arriendo' %}">Arrendar</a>
+            <a class="btn btn-info" id="arrendar" href="{% url 'arriendo' %}">Publicar Estacionamiento</a>
         </div>
+        {% else %}
+        <div>
+            <h2>¡Inicie sesión o registrate para arrendar!.</h2>
+        </div>
+        {% endif %}
         
     </form>
     
@@ -30,5 +36,5 @@
 
     </form>
 </div>
-<script src="{% static 'core/js/mapa.js' %}"></script>
+<script src="{% static 'core/js/FuncionMapa.js' %}"></script>
 {% endblock %}

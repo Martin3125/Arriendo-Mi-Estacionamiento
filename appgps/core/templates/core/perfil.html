@@ -30,11 +30,18 @@
                 </div>
                 <br>
                 <div id="botones_ajustes">
-                    <a href="{% url 'editarPerfil' %}" class="btn btn-info" onclick="mostrarEditar(document.getElementById('csrf_token').textContent)">Editar</a> 
+                    <a href="{% url 'actualizarPerfil'  i.email  %}" class="btn btn-info" >Editar</a> 
                 </div>
             </div>
             {% endfor %}
+            
         </div>
+            
+            {% if messages %}
+            {% for m in messages %}
+            <p id="mensaje" style="color: rgb(255, 255, 255);">{{m}}</p>
+            {% endfor %}
+            {% endif %}
 
         <script>
             function mostrarEmail(email){

@@ -4,160 +4,51 @@
 {% block title %}Ajustes de usuario{% endblock %}
 
 {% block head %}
-    
-    <link href="{% static 'core/css/arriendo1.css'%}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{% static 'core/js/mapa.js'%}" type="text/js">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>   
-    
+
+<link href="{% static 'core/css/hakunamatata.css'%}" rel="stylesheet" type="text/css">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
 {% endblock %}
 {% block content %}
 
-<div  class="ratio ratio-16x9">
-    
-    <h1>ARRIENDO</h1> 
+<div class="ratio ratio-16x9">
+
+    <h1>ARRIENDO</h1>
     <form id="formRegistro" action="/addUbicacion/" method="post">
         {% csrf_token %}
         <div class="form-group" id="formNombre">
             <label for=" exampleInputEmail1">Nombre</label>
-            <input type="text" class="form-control"     id="inputNombre" name="nombre">
+            <input type="text" class="form-control" id="inputNombre" name="nombre" required>
         </div>
         <div class="form-group" id="formCorreo">
             <label for="exampleInputEmail1">Longitud</label>
-            <input type="text" class="form-control" id="inputLongitud" name="lat" readonly>
+            <input type="text" class="form-control" id="inputLongitud" name="lat" readonly required>
         </div>
         <div class="form-group" id="formContraseña">
             <label for="exampleInputPassword1">Latitud</label>
-            <input type="text" class="form-control" id="inputLatitud" name="lng" readonly>
+            <input type="text" class="form-control" id="inputLatitud" name="lng" readonly required>
         </div>
         <div class="form-group" id="formPrecio">
             <label for="exampleInputPassword1">Valor por hora:</label>
-            <input type="number" class="form-control" id="inputPrecio" name="precio">
+            <input type="number" class="form-control" id="inputPrecio" name="precio" required>
         </div>
-        <button type="submit" class="btn btn-success" id="btnGuardar" >Guardar</button>
-        
-        {% if messages %}
-        {% for m in messages %}
-        <p id="mensaje" style="color: white;">{{m}}</p>
-        {% endfor %}
-        {% endif %}
-        <a class="btn btn-info" id="btnRegistrarse" href="#">Arrendar</a> 
-         
-        
-        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2174.3150122290667!2d-71.21335322204507!3d-33.69433560376429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2scl!4v1666291482908!5m2!1ses-419!2scl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="mapa"></iframe> -->
-        
-       
-        <!-- <iframe
-            id="mapa"
-            width="450"
-            height="250"
-            frameborder="0" style="border:0"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBUaZKalsm_V3MUSPtRUnYTopFP7nD8XAY&q=Duoc Uc + Melipilla, Chile"
-            allowfullscreen>
-        </iframe> -->
-       
-       
-        
-        <!-- <script src="{% static 'core/js/mapa.js'%}" type="module"></script>
-
-        <script 
-        async  
-        defer
-        
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBUaZKalsm_V3MUSPtRUnYTopFP7nD8XAY&q=Duoc Uc + Melipilla, Chile"
-        ></script> -->
+        <button type="submit" class="btn btn-success" id="btnGuardar">Publicar Estacionamiento</button>
 
 
+        <!--mapa -->
         <div id="map_container"></div>
         <div id="map"></div>
-            <script>
-            var map;
-            function initMap() {
-                const uluru = { lat: -33.69417055239359, lng: -71.21368835681287 };  
-                map = new google.maps.Map(document.getElementById('map'), {
-                    mapId: "b7011240b82da652",
-                    center: uluru, 
-                    zoom: 16,
-                    
-                });
-                const marker = new google.maps.Marker({
-                    position: uluru, 
-                    map: map,
-                    draggable: true,
-                    title: 'Arrastrame'
-                });
-                function getCoords(position)
-                    {
-                        var lat = position.coords.latitude;
-                        var lng = position.coords.longitude;
-                
-                        initialize(lat, lng);
-                
-                    }
-                function getError(err)
-                    {
-                        initialize(-33.69417055239359, -71.21368835681287);
-                    }
-                google.maps.event.addListener(marker, 'position_changed', function(){
-                    getMarkerCoords(marker);
-                });
-                function getMarkerCoords(Marker)
-                {
-                    var markerCoords = marker.getPosition();
-                    $('#inputLongitud').val(markerCoords.lng());
-                    $('#inputLatitud').val(markerCoords.lat());
-                }
-                // $('#formRegistro').submit(function(e){
-                //     e.preventDefault();
-                //     $.post('addUbicacion', $(this).serialize(), function(data){
-                //         if(data.ok)
-                //         {
-                //             // $('#data').html(data.msg);
-                //             $('#formRegistro').each(function(){this.reset(); });
-                        
-                //         } else {
-                //             alert(data.msg);
-                //         }
 
-                //     },'json');
-                // });
-                // var stylesArray = [
-                //     {
-                        
-                //         elementType: 'labels.icon',
-                //         stylers: [
-                        
-                //         {visibility: 'off'},
-                //         // Add any stylers you need.
-                //         ]
-                //     }
-                // ];
-
-
-            }
-            </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUaZKalsm_V3MUSPtRUnYTopFP7nD8XAY&callback=initMap&getCoords%getError&getMarkerCoords" async defer></script>
-            </script>
        
+        <script     
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUaZKalsm_V3MUSPtRUnYTopFP7nD8XAY&callback=initMap&getCoords%getError&getMarkerCoords"
+            async defer></script>
+        </script>
+
     </form>
 
-    
-    
-<!-- <div id="data">
-    <ul>
-        {% for ubicacion in ubicaciones %}
-            <li>{{ubicacion.nombre}} {{ubicacion.usuario}} {{ubicacion.fecha|timesince }}</li>
-        {% endfor%}
-    </ul>
-</div> -->
 
-    
-   
 </div>
+<script src="{% static 'core/js/map.js' %}"></script>
 {% endblock %}
-
-
-
-
-
-

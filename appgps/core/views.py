@@ -64,6 +64,10 @@ def perfil(request):
     usuario = Usuario.objects.filter(email = request.session['email'])
     return render(request, 'core/perfil.html', {'usuario':usuario})
 
+def actualizarPerfil(request, email):
+    usuario = Usuario.objects.get(email = email)
+    return render(request, 'core/editarPerfil.html', {'usuario':usuario})
+
 
 # promo = Promo.objects.filter(id_promo = code)
 #     if request.method == 'POST':
@@ -83,7 +87,7 @@ def editarPerfil(request):
     oldemail.nombre = nombre
     oldemail.apellido = apellido
     oldemail.save()
-    messages.success(request, 'Usuario: ' + nombre +'Actualizado correctamente!')
+    messages.success(request, 'Usuario: ' + nombre +' Actualizado correctamente!')
     return redirect('perfil')
     # else:        
     #     return render(request, 'core/editarPerfil.html', {"email":email})
@@ -98,6 +102,17 @@ def eliminarUsuario(request, email):
     usuario = Usuario.objects.get(email=email)
     usuario.delete()
     return redirect('crudUsuario')
+
+def crudUbicaciones(request):
+    contexto = {'ubicacion': Ubicacion.objects.all()}
+    return render(request, 'core/crudUbicaciones.html', contexto)
+
+
+def eliminarUbicacion(request, nombre):
+    usuario = Ubicacion.objects.get(nombre=nombre)
+    usuario.delete()
+    return redirect('crudUbicaciones')
+
 
 def cerrarSesion(request):
     del request.session['email']
