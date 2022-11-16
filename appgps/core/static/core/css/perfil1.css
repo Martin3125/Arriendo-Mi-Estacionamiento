@@ -60,7 +60,7 @@ h1{
 #perfil_info{
     background-color: white;
     color: black;
-    padding: 20px;
+    padding: 50px;
     margin: auto;
 
 }   
@@ -74,11 +74,11 @@ h1{
 @media only screen and (max-width: 1500px ){
     #formPerfil {
         margin-top: 12%;
-        margin-left: 32%;
+        margin-left: 27%;
         margin-bottom: 5%;
         padding: 5%;
-        height: 75%;
-        width: 36%;
+        height: 85%;
+        width: 45%;
         justify-content: center;
     }
 
@@ -103,4 +103,9 @@ h1{
         margin: auto;
     
     }
+    #iconoLogin{
+        margin-top: -5%;
+        margin-left: 35%;
+    
+    }  
 }

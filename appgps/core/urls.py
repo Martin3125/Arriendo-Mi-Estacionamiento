@@ -12,6 +12,7 @@ urlpatterns = [
     path('ajustes', ajustes, name='ajustes'),
     
     
+    
     path('cerrarSesion', cerrarSesion, name="cerrarSesion"),
     path('addUbicacion/', addUbicacion, name = "addUbicacion"),
     path('obtener', obtener, name="obtener"),
@@ -28,4 +29,10 @@ urlpatterns = [
     path('editarPerfil/', editarPerfil, name="editarPerfil"),
     path('actualizarPerfil/<email>', actualizarPerfil, name='actualizarPerfil'),
     path('perfil', perfil, name='perfil'),
+
+    # #
+    # path('arrendar/<nombre>',arrendar   , name="arrendar"),
+    path('arriendoEs/<nombre>',arriendoEs, name="arriendoEs"),
+    path('confirmarArriendo/<nombre>',confirmarArriendo, name="confirmarArriendo"),
+    
 ]

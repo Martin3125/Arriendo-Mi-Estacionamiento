@@ -1,0 +1,67 @@
+{% extends "core/layout.html" %}
+{% load static %}
+
+{% block title %}Arriendo{% endblock %}
+
+{% block head %}
+
+<link href="{% static 'core/css/arriendoEs.css'%}" rel="stylesheet" type="text/css">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+{% endblock %}
+{% block content %}
+
+<div class="ratio ratio-16x9" >
+
+    <h1>ARRIENDO</h1>
+    <form id="formRegistro" action="/confirmarArriendo/{{ ubicacion.nombre }}" method="post">
+        {% csrf_token %}
+        <div class="form-group" id="formNombre">
+            <label for=" exampleInputEmail1">Nombre: </label>
+            <input type="text" class="form-control"     id="inputNombre" name="nombre" value="{{ ubicacion.nombre }}" readonly > </input>
+        </div>
+        <div class="form-group" id="formPrecio">
+            <label for="exampleInputPassword1">Latitud: </label>
+            <input type="number" class="form-control"     id="inputPrecio" name="lat" value="{{ubicacion.lat}}" readonly> </input>
+        </div>
+        <div class="form-group" id="formPrecio">
+            <label for="exampleInputPassword1">Longitud: </label>
+            <input type="" class="form-control"     id="inputPrecio" name="lng" value="{{ubicacion.lng}}" readonly> </input>
+        </div>
+        <div class="form-group" id="formPrecio">
+            <label for="exampleInputPassword1">Valor por hora: </label>
+            <input type="text" class="form-control"     id="inputPrecio" name="precio" value="{{ubicacion.precio}}" readonly> </input>
+        </div>
+        <div>
+            <label for="exampleInputDueño">Dueño email: </label>
+            <input type="text" class="form-control"     id="inputUser" name="dueño" value="{{ubicacion.user}}" readonly> </input>
+        </div>
+        <div class="form-group" id="formPrecio">
+            <label for="exampleInputPassword1">Fecha publicacion: </label>
+            <input type="text" class="form-control"     id="inputFecha" name="fecha" value="{{ubicacion.fecha}}" readonly> </input>
+        </div>
+        {% if "email" in request.session %}
+        <br>
+        <button type="submit" class="btn btn-success" id="btnGuardar">Arrendar</button>
+        {% else %}
+        <br>
+        <a class="btn btn-info" id="eliminarCuenta" href="{% url 'login' %}">Login</a>
+        {% endif %}
+
+        <!--mapa -->
+        <!-- <div id="map_container"></div>
+        <div id="map"></div> -->
+
+       
+        <script     
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUaZKalsm_V3MUSPtRUnYTopFP7nD8XAY&callback=initMap&getCoords%getError&getMarkerCoords"
+            async defer></script>
+        </script>
+
+    </form>
+
+
+</div>
+<script src="{% static 'core/js/arriendoEs.js' %}"></script>
+{% endblock %}

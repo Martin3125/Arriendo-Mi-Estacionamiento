@@ -12,7 +12,6 @@ body {
     background-position: center center; 
     background-size: cover;
     background-attachment: fixed;
-    
 }
 
 #iconoRegistro {
@@ -32,42 +31,59 @@ h1{
 #formRegistro {
     background-color: #585858ec;
     color: white;
-    margin-top: 12%;
+    margin-top: 11.5%;
     margin-left: 5%;
     margin-bottom: 5%;
-    padding: 2%;
+    padding: 5%;
     padding-top: 5%;
-    padding-right: 70%;
     height: 80%;
     width: 90%;
     justify-content: center;
+    
 }
 
 
 
-#btnRegistrarse{
-    margin-top: 1%;
+#btnbuscar{
     margin-left: 1%;
+    height: 10%;
+    width: 10%;
 }
+
 #mapa{
-    margin-top: -100%;
-    margin-left: 120%;
-    height: 500px;
-    width: 350%;
+    margin-top: -3%;
+    margin-left: 0%;
+    height: 100%;
+    width: 100%;
 }
-
-
+#arrendar{
+    display: flex;
+    margin-top: 1%;
+    margin-left: 40%;
+    height: 10%;
+    width: 20%;
+    padding-left: 1.9%;
+}
+#botones{
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
 
 #map_container{
     position: relative;
   }
   #map{
-    margin-top: -150%;
-    margin-left: 120%;
+    margin-top: -3%;
+    margin-left: 0%;
     height: 100%;
-    width: 350%;
+    width: 100%;
       overflow: hidden;
       padding-bottom: 22.25%;
-      padding-top: -10px;
+      padding-top: 30px;
       position: relative;
   }
+
+h2{
+    text-align: center;
+}
