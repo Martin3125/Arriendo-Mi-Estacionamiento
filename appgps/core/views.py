@@ -156,3 +156,18 @@ def confirmarArriendo(request, nombre):
     oldUbicacion.delete()
 
     return redirect('home')
+
+def misArriendos(request ):
+    contexto = {'ubicacion': Ubicacion.objects.obtener_user(user= request.session['email'])}
+    return render(request, 'core/misArriendos.html', contexto)
+
+def ValidacionDatos(request):
+    return render(request, 'core/ValidacionDatos.html')
+
+def Pagos(request):
+    return render(request, 'core/Pagos.html')
+
+def Disponible(request):
+    
+
+    return render(request, 'core/Pagos.html')

@@ -1,0 +1,62 @@
+{% extends "core/layout.html" %}
+{% load static %}
+
+{% block title %}Ajustes de usuario{% endblock %}
+
+{% block head %}
+    <link href="{% static 'core/css/misArriendos1.css'%}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+{% block content %}
+<div class="ratio ratio-16x9">
+    <div class="tabla">
+        <table class="table" style="color:white">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre estaciomiento</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">User</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+           
+            
+
+            
+            {% if "email" in request.session %}
+                {% for i in ubicacion  %}
+                    <tr >
+                        <th scope="row">{{ i.nombre }}</th>
+                        <td>{{ i.precio }}</td>
+                        <td>{{ i.fecha }}</td>
+                        <td>{{ i.user }}</td>
+                        <td>{{ i.disponible }}</td>
+                        <td >
+                            {% if request.session.email %}
+ 
+                            <a class="switches">
+                                    <input type="checkbox" id="{{ i.nombre }}" checked > </input>
+                                    <label for="{{ i.nombre }}" >
+                                      <span></span>
+                                    </label>
+                                  
+                                
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr> 
+                {% endfor %}  
+            {% endif %}    
+             
+           
+               
+            
+        
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

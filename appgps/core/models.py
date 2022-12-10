@@ -11,6 +11,13 @@ class Usuario(models.Model):
     pwd = models.CharField(null=False, max_length=12)
     tipo_usuario = models.BooleanField( max_length=16, default=False)
 
+class UbicacionManeger(models.Manager):
+    def obtener_user(self, user):
+        return self.filter(user=user)
+
+    def disponible(self, disponible):
+        return self.filter(disponible=disponible)    
+
 class Ubicacion (models.Model):
     nombre = models.CharField(primary_key=True, max_length=50)
     lat = models.FloatField(default= 0)
@@ -18,6 +25,9 @@ class Ubicacion (models.Model):
     fecha = models.DateTimeField( auto_now_add=True)
     precio = models.IntegerField( default= 0)
     user = models.EmailField(max_length=50)
+    disponible = models.BooleanField(default= True)
+
+    objects = UbicacionManeger()
 
     def __unicode__(self):
         return self.nombre

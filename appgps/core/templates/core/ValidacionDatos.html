@@ -1,0 +1,39 @@
+{% extends "core/layout.html" %}
+{% load static %}
+
+{% block title %}Ajustes de usuario{% endblock %}
+
+{% block head %}
+    <link href="{% static 'core/css/ValidacionDatos.css'%}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+{% block content %}
+<div  class="ratio ratio-16x9">
+    
+    <h1>Validar Datos </h1> 
+    <form id="formRegistro" method="post">
+        {% csrf_token %}
+        
+        <div class="form-group" id="formNombre">
+            <label for=" exampleInputEmail1">Nombre Completo</label>
+            <input type="text" class="form-control" id="inputNombre" name="nombre" required>
+        </div>
+        <div class="form-group" id="formNombreBanco">
+            <label for=" exampleInputEmail1">Nombre del Banco </label>
+            <input type="text" class="form-control" id="inputNombre" name="nombreBanco" required>
+        </div>
+        <div class="form-group" id="formNombreBanco">
+            <label for=" exampleInputEmail1">Número de tarjeta </label>
+            <input type="number" class="form-control" id="inputNombre" name="nombreBanco" required>
+        </div>
+        <div class="form-group" id="formNombreBanco">
+            <label for=" exampleInputEmail1">Código de Seguridad </label>
+            <input type="number" class="form-control" id="inputNombre" name="nombreBanco" required>
+        </div>
+        <br>
+        <a class="btn btn-info" id="validar" href="{% url 'ajustes' %}">Validar</a>
+        <br>
+        
+    </form>
+</div>
+{% endblock %}

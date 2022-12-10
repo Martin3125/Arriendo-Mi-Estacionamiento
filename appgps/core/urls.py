@@ -13,6 +13,7 @@ urlpatterns = [
     
     
     
+    
     path('cerrarSesion', cerrarSesion, name="cerrarSesion"),
     path('addUbicacion/', addUbicacion, name = "addUbicacion"),
     path('obtener', obtener, name="obtener"),
@@ -29,6 +30,19 @@ urlpatterns = [
     path('editarPerfil/', editarPerfil, name="editarPerfil"),
     path('actualizarPerfil/<email>', actualizarPerfil, name='actualizarPerfil'),
     path('perfil', perfil, name='perfil'),
+
+    #funciones del crud misArriendos
+    path('misArriendos/', misArriendos, name='misArriendos'),
+
+
+    
+
+    #funciones de  ValidacionDatos
+    path('ValidacionDatos', ValidacionDatos, name='ValidacionDatos'),
+  
+    #funciones de  Pagos
+    path('Pagos', Pagos, name='Pagos'),
+
 
     # #
     # path('arrendar/<nombre>',arrendar   , name="arrendar"),

@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Righteous&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+body {
+    background-image: url("https://p4.wallpaperbetter.com/wallpaper/344/455/615/mclaren-mp4-12c-black-cars-wallpaper-preview.jpg");
+    background-repeat: no-repeat;
+    background-position: center center; 
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+
+#iconoRegistro {
+    margin-left: 40%;
+}
+
+h1{
+    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Righteous', cursive;
+    font-size: 50px;
+    margin-top: 7%;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+#formRegistro {
+    background-color: #585858ec;
+    color: white;
+    margin-top: 12%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    padding: 2%;
+    padding-top: 5%;
+    padding-right: 70%;
+    height: 80%;
+    width: 90%;
+    justify-content: center;
+}
+
+
+
+#btnRegistrarse{
+    margin-top: 1%;
+    margin-left: 1%;
+}

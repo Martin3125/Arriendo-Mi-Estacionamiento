@@ -4,7 +4,7 @@
 {% block title %}Ajustes de usuario{% endblock %}
 
 {% block head %}
-    <link href="{% static 'core/css/ajuste.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'core/css/ajuste1.css'%}" rel="stylesheet" type="text/css">
 
 {% endblock %}
 {% block content %}
@@ -20,8 +20,10 @@
                 <a class="btn btn-info" id="eliminarCuenta" href="{% url 'crudUbicaciones' %}">Ubicaciones</a>
             {% endif %}
 
-            {% if "email" in request.session %}
-                <a class="btn btn-info" id="cerrar" href="{% url 'cerrarSesion' %}">Cerrar sesión</a> 
+            {% if "email" in request.session %}         
+                <a class="btn btn-info" id="misA" href="{% url 'misArriendos' %}">Mis arriendos</a>
+                <a class="btn btn-info" id="pago" href="{% url 'ValidacionDatos' %}">Validación de datos</a> 
+                <a class="btn btn-info" id="cerrar" href="{% url 'cerrarSesion' %}">Cerrar sesión</a>             
             {% else %}
                 <a class="btn btn-info" id="eliminarCuenta" href="{% url 'login' %}">Login</a>
             {% endif %}
