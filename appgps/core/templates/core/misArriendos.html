@@ -4,7 +4,7 @@
 {% block title %}Ajustes de usuario{% endblock %}
 
 {% block head %}
-    <link href="{% static 'core/css/misArriendos1.css'%}" rel="stylesheet" type="text/css">
+<link href="{% static 'core/css/misArriendos2.css'%}" rel="stylesheet" type="text/css">
 
 {% endblock %}
 {% block content %}
@@ -20,40 +20,35 @@
                 </tr>
             </thead>
             <tbody>
-                
-           
-            
 
-            
-            {% if "email" in request.session %}
-                {% for i in ubicacion  %}
-                    <tr >
-                        <th scope="row">{{ i.nombre }}</th>
-                        <td>{{ i.precio }}</td>
-                        <td>{{ i.fecha }}</td>
-                        <td>{{ i.user }}</td>
-                        <td>{{ i.disponible }}</td>
-                        <td >
-                            {% if request.session.email %}
- 
-                            <a class="switches">
-                                    <input type="checkbox" id="{{ i.nombre }}" checked > </input>
-                                    <label for="{{ i.nombre }}" >
-                                      <span></span>
-                                    </label>
-                                  
-                                
-                            </a>
-                            {% endif %}
-                        </td>
-                    </tr> 
-                {% endfor %}  
-            {% endif %}    
-             
-           
-               
-            
-        
+
+
+
+
+                {% if "email" in request.session %}
+                {% for i in ubicacion %}
+                <tr>
+                    <th scope="row">{{ i.nombre }}</th>
+                    <td>{{ i.precio }}</td>
+                    <td>{{ i.fecha }}</td>
+                    <td>{{ i.user }}</td>
+                    <td>
+                        {% if request.session.email %}
+                        {% if i.disponible == True %}
+                        <a class="btn" id="habilitarSi" href="{% url 'disponible' i.nombre  %}">Disponible</a>
+                        {% else %}
+                        <a class="btn" id="habilitarNo" href="{% url 'disponible' i.nombre  %}">No disponible</a>
+                        {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+
+
+
+
+
             </tbody>
         </table>
     </div>

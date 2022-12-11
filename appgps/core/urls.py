@@ -33,7 +33,7 @@ urlpatterns = [
 
     #funciones del crud misArriendos
     path('misArriendos/', misArriendos, name='misArriendos'),
-
+    path('disponible/<nombre>', Disponible, name='disponible'),
 
     
 
@@ -48,5 +48,7 @@ urlpatterns = [
     # path('arrendar/<nombre>',arrendar   , name="arrendar"),
     path('arriendoEs/<nombre>',arriendoEs, name="arriendoEs"),
     path('confirmarArriendo/<nombre>',confirmarArriendo, name="confirmarArriendo"),
+    
+
     
 ]

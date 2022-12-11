@@ -5,7 +5,7 @@
 
 {% block head %}
 
-<link href="{% static 'core/css/arriendoEs.css'%}" rel="stylesheet" type="text/css">
+<link href="{% static 'core/css/arriendoEs1.css'%}" rel="stylesheet" type="text/css">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
@@ -29,10 +29,6 @@
             <label for="exampleInputPassword1">Longitud: </label>
             <input type="number" class="form-control"     id="inputPrecio" name="lng" value="{{ubicacion.lng}}" readonly> </input>
         </div>
-        <div class="form-group" id="formPrecio">
-            <label for="exampleInputPassword1">Valor por hora: </label>
-            <input type="text" class="form-control"     id="inputPrecio" name="precio" value="{{ubicacion.precio}}" readonly> </input>
-        </div>
         <div>
             <label for="exampleInputDueño">Dueño email: </label>
             <input type="text" class="form-control"     id="inputUser" name="dueño" value="{{ubicacion.user}}" readonly> </input>
@@ -41,9 +37,27 @@
             <label for="exampleInputPassword1">Fecha publicacion: </label>
             <input type="text" class="form-control"     id="inputFecha" name="fecha" value="{{ubicacion.fecha}}" readonly> </input>
         </div>
+        <div class="form-group" id="formPrecio">
+            <label for="exampleInputPassword1">Valor por hora: </label>
+            <input type="text" class="form-control"     id="inputPrecio" name="precio" value="{{ubicacion.precio}}" readonly> </input>
+        </div>
+        <div class="form-group" id="formPrecio">
+            <label for="exampleInputPassword1">Hora de Inicio: </label>
+            <input type="number" class="form-control"  placeholder="HH"   id="inputInicio" name="h_inicio" value="{{ubicacion.h_inicio}}" min="00" max="23"> </input>
+        </div>
+        <div class="form-group" id="formPrecio">
+            <label for="exampleInputPassword1">Hora de Salida: </label>
+            <input type="number" class="form-control"  placeholder="HH"     id="inputSalida" name="h_salida" value="{{ubicacion.h_salida}}" min="00" max="23"> </input>
+        </div>
+        <div class="form-group" id="formPrecio">
+            <label for="exampleInputPassword1">Total a Pagar: </label>
+            <input type="number" class="form-control"      id="inputtPago" name="totalPago" value="{{ubicacion.totalPago}}" readonly></input>
+        </div>
         {% if "email" in request.session %}
         <br>
-        <button type="submit" class="btn btn-success" id="btnGuardar">Arrendar</button>
+        <a  type="submit" class="btn btn-success" id="btnGuardar1">CALCULAR</a>
+        <a  class="btn btn-danger" id="btnGuardar" href="{% url 'home' %}" >CANCELAR</a>
+        <a type="submit" class="btn btn-success" id="btnGuardar" href="{% url 'Pagos' %}">Arrendar</a>
         {% else %}
         <br>
         <a class="btn btn-info" id="eliminarCuenta" href="{% url 'login' %}">Login</a>

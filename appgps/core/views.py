@@ -149,16 +149,24 @@ def confirmarArriendo(request, nombre):
     dueño = request.POST['dueño']
     fecha = request.POST['fecha']
     user= request.session['email']
-    newArriendoEs = ArriendoEs(user = user, nombreEs =nombre, lat = lat, lng = lng,precio = precio,dueño = dueño, fecha = fecha)
+    h_inicio = request.POST['h_inicio']
+    h_salida = request.POST['h_salida']
+    totalPago = request.POST['totalPago']
+    newcalculo = ArriendoEs(h_inicio = h_inicio, h_salida = h_salida, totalPago = totalPago)
+    newcalculo.save()
+    newArriendoEs = ArriendoEs(user = user, nombreEs =nombre, lat = lat, lng = lng,precio = precio,dueño = dueño, fecha = fecha, h_inicio = h_inicio, h_salida = h_salida, totalPago = totalPago)
     newArriendoEs.save()
 
     oldUbicacion = Ubicacion.objects.get(nombre=nombre)
     oldUbicacion.delete()
-
+    print(totalPago)
     return redirect('home')
+
 
 def misArriendos(request ):
     contexto = {'ubicacion': Ubicacion.objects.obtener_user(user= request.session['email'])}
+    # disponible = request.POST['a']
+    # print(disponible)
     return render(request, 'core/misArriendos.html', contexto)
 
 def ValidacionDatos(request):
@@ -167,7 +175,13 @@ def ValidacionDatos(request):
 def Pagos(request):
     return render(request, 'core/Pagos.html')
 
-def Disponible(request):
-    
-
-    return render(request, 'core/Pagos.html')
+def Disponible(request,nombre):
+    ubicacion = Ubicacion.objects.get(nombre =nombre)
+    if ubicacion.disponible == True:
+        ubicacion.disponible = False
+    else:
+        ubicacion.disponible = True
+    ubicacion.save()
+    print(ubicacion) 
+    contexto = {'ubicacion': Ubicacion.objects.obtener_user(user= request.session['email'])}
+    return render(request, 'core/misArriendos.html',contexto)

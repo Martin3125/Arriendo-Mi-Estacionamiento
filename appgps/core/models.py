@@ -38,5 +38,8 @@ class ArriendoEs(models.Model):
     lat = models.FloatField(default= 0)
     lng = models.FloatField(default= 0)
     precio = models.IntegerField( default= 0)
+    h_inicio = models.CharField(max_length=50, default= 0)
+    h_salida = models.CharField(max_length=50, default= 0)
+    totalPago = models.CharField(max_length=50, default= 0)
     dueño = models.EmailField(max_length=50)
     fecha = models.CharField(max_length=50)
