@@ -5,4 +5,5 @@ from .models import *
 admin.site.register(Usuario)
 admin.site.register(Ubicacion)
 admin.site.register(ArriendoEs)
-
+admin.site.register(Cuenta)
+admin.site.register(Pago)

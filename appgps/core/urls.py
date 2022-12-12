@@ -39,16 +39,19 @@ urlpatterns = [
 
     #funciones de  ValidacionDatos
     path('ValidacionDatos', ValidacionDatos, name='ValidacionDatos'),
+    path('ValidacionCuenta/', ValidacionCuenta, name='ValidacionCuenta'),
   
     #funciones de  Pagos
-    path('Pagos', Pagos, name='Pagos'),
-
+    path('Pagos/', Pagos, name='Pagos'),
+     path('Pagos1/', Pagos, name='Pagos'),
 
     # #
     # path('arrendar/<nombre>',arrendar   , name="arrendar"),
     path('arriendoEs/<nombre>',arriendoEs, name="arriendoEs"),
     path('confirmarArriendo/<nombre>',confirmarArriendo, name="confirmarArriendo"),
+    path('calcularArriendo/<nombre>',calcularArriendo, name="calcularArriendo"),
     
-
+    path('finalizar/', finalizar, name="finalizar"),
     
 ]
+    

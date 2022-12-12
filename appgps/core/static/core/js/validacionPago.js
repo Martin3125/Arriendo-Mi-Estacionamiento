@@ -61,4 +61,4 @@ $(document).ready(function () {
             $("#mensaje5").html("Acepta las condiciones.")
         }
     });
-});
+}); 

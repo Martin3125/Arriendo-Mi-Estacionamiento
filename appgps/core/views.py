@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib import messages
@@ -141,26 +141,60 @@ def arriendoEs(request, nombre):
     return render(request, 'core/arriendoEs.html', {'ubicacion':ubicacion})
 
 #Guarda el arriendo elegido.
-def confirmarArriendo(request, nombre):
-    nombre = request.POST['nombre']
+def calcularArriendo(request, nombre):
+    nombre = request.POST['nombreEs']
     lat = request.POST['lat']
     lng = request.POST['lng']   
     precio = request.POST['precio']
     dueño = request.POST['dueño']
     fecha = request.POST['fecha']
     user= request.session['email']
-    h_inicio = request.POST['h_inicio']
-    h_salida = request.POST['h_salida']
-    totalPago = request.POST['totalPago']
-    newcalculo = ArriendoEs(h_inicio = h_inicio, h_salida = h_salida, totalPago = totalPago)
-    newcalculo.save()
-    newArriendoEs = ArriendoEs(user = user, nombreEs =nombre, lat = lat, lng = lng,precio = precio,dueño = dueño, fecha = fecha, h_inicio = h_inicio, h_salida = h_salida, totalPago = totalPago)
+    h_inicio = int(request.POST['h_inicio'])
+    h_salida = int(request.POST['h_salida'])
+    print(type(h_inicio))
+    print(type(h_salida))
+    total_pagar = precio*(h_salida - h_inicio)
+    
+    newArriendoEs = ArriendoEs(user = user, nombreEs =nombre, lat = lat, lng = lng,precio = precio,dueño = dueño, fecha = fecha, h_inicio = h_inicio, h_salida = h_salida, totalPago = total_pagar)
+    print("funca")
+    print(total_pagar)
+    newArriendoEs.save()
+
+    contexto ={'ubicacion': Ubicacion.objects.get(nombre=nombre)}
+    return render(request, 'core/arriendoEs.html', contexto)
+
+#Guarda el arriendo elegido.
+
+def confirmarArriendo(request, nombre):
+    nombreEs = request.POST['nombreEs'] 
+    lat = request.POST['lat']
+    lng = request.POST['lng']
+    precio = int(request.POST['precio'])
+    dueño = request.POST['dueño']
+    fecha = request.POST['fecha']
+    user= request.session['email']
+    h_inicio = int(request.POST['h_inicio'])
+    h_salida = int(request.POST['h_salida'])
+    rut = request.POST['rut']
+    patente = request.POST['patente']
+    print(type(h_inicio))
+    print(type(h_salida))
+    total_pagar = precio*(h_salida - h_inicio)
+    
+    newArriendoEs = ArriendoEs(user = user, nombreEs = nombreEs, lat = lat, lng = lng, precio = precio, dueño = dueño, fecha = fecha, h_inicio = h_inicio, h_salida = h_salida, totalPago = total_pagar)
+    newUser = Usuario.objects.get(email = user)
+    newUser.rut = rut
+    newUser.patente = patente
+    print("funca")
+    print(total_pagar)
+    newUser.save()
     newArriendoEs.save()
 
     oldUbicacion = Ubicacion.objects.get(nombre=nombre)
-    oldUbicacion.delete()
-    print(totalPago)
+    oldUbicacion.disponible = False
+    oldUbicacion.save()
     return redirect('home')
+
 
 
 def misArriendos(request ):
@@ -173,8 +207,13 @@ def ValidacionDatos(request):
     return render(request, 'core/ValidacionDatos.html')
 
 def Pagos(request):
-    return render(request, 'core/Pagos.html')
+    contexto1 = {'user' :ArriendoEs.objects.get(user = request.session['email'])}
+    return render(request, 'core/Pagos.html',contexto1)
 
+def Pagos1(request):
+    contexto2 = {'cuenta': Cuenta.objects.get(user = request.session['email'])}
+    return render(request, 'core/Pagos.html',contexto2)
+    
 def Disponible(request,nombre):
     ubicacion = Ubicacion.objects.get(nombre =nombre)
     if ubicacion.disponible == True:
@@ -185,3 +224,35 @@ def Disponible(request,nombre):
     print(ubicacion) 
     contexto = {'ubicacion': Ubicacion.objects.obtener_user(user= request.session['email'])}
     return render(request, 'core/misArriendos.html',contexto)
+
+
+def ValidacionCuenta(request):
+    user = request.session['email']
+    nombre = request.POST['nombre']
+    nombreBanco = request.POST['nombreBanco']
+    numTarjeta = request.POST['numTarjeta']
+    MM = request.POST['MM']
+    YY = request.POST['YY']
+    CCV = request.POST['CCV']
+    newcuenta = Cuenta( user = user, nombre = nombre, nombreBanco = nombreBanco, numTarjeta = numTarjeta, MM = MM , YY = YY, CCV = CCV)
+    newcuenta.save()
+    print('funca')
+    return redirect('ajustes')
+
+def finalizar(request):
+    id_pago = len(request.POST['nombreEs']) *99/234
+    user = request.session['email']
+    nombreEs = request.POST['nombreEs'] 
+    h_inicio = request.POST['h_inicio']
+    fecha_Pago = datetime.now()
+    totalPago = request.POST['totalPago']
+
+    newPago = Pago(id_pago = id_pago, user = user, nombreEs = nombreEs, h_inicio = h_inicio, fecha_Pago = fecha_Pago, totalPago = totalPago)
+    newPago.save()
+
+    
+    oldUbicacion = Ubicacion.objects.get(nombre=nombreEs)
+    oldUbicacion.disponible = True
+    oldUbicacion.save()
+
+    return redirect('home')

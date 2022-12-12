@@ -4,16 +4,16 @@
 {% block title %}Ajustes de usuario{% endblock %}
 
 {% block head %}
-    <link href="{% static 'core/css/ValidacionDatos.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'core/css/ValidacionDatos1.css'%}" rel="stylesheet" type="text/css">
 
 {% endblock %}
 {% block content %}
 <div  class="ratio ratio-16x9">
     
     <h1>Validar Datos </h1> 
-    <form id="formRegistro" method="post">
+    <form id="formRegistro" action="/ValidacionCuenta/" method="post">
         {% csrf_token %}
-        
+        {% if "email" in request.session %}
         <div class="form-group" id="formNombre">
             <label for=" exampleInputEmail1">Nombre Completo</label>
             <input type="text" class="form-control" id="inputNombre" name="nombre" required>
@@ -22,18 +22,64 @@
             <label for=" exampleInputEmail1">Nombre del Banco </label>
             <input type="text" class="form-control" id="inputNombre" name="nombreBanco" required>
         </div>
-        <div class="form-group" id="formNombreBanco">
-            <label for=" exampleInputEmail1">Número de tarjeta </label>
-            <input type="number" class="form-control" id="inputNombre" name="nombreBanco" required>
+        <div class="row ">
+            <div class="col-md-12">
+                <label for="Numtarjeta"></label>
+                <input type="text" class="form-control" id="Numtarjeta" name="numTarjeta" maxlength="16" placeholder="Numero de Tarjeta" required />
+                <h4 id="mensaje"></h4>
+            </div>
         </div>
-        <div class="form-group" id="formNombreBanco">
-            <label for=" exampleInputEmail1">Código de Seguridad </label>
-            <input type="number" class="form-control" id="inputNombre" name="nombreBanco" required>
+        <div class="row ">
+            <div class="imagenTarjeta">
+                <img src="{% static 'core/img/tarjeta.png' %}" class="img-rounded" width="50" />
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <label for="MM"></label>
+                <input type="number" class="form-control" id="MM" name="MM" placeholder="MM" required />
+                <h4 id="mensaje1"></h4>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <label for="YY"></label>
+                <input type="number" class="form-control" id="YY" name="YY" placeholder="YY" required />
+                <h4 id="mensaje2"></h4>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <label for="CCV"></label>
+                <input type="number3" class="form-control" id="CCV" name="CCV" placeholder="CCV" required />
+                <h4 id="mensaje3"></h4>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 pad-adjust">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" checked class="text-muted" id="check"> Acepto los <a
+                            href="#">Terminos</a> y <a href="#">Condiciones</a>.
+                        <h4 id="mensaje5"></h4>
+                    </label>
+                    <div class="invalid-feedback">
+                        Debe aceptar los Terminos y Condiciones para registrar.
+                    </div>
+                </div>
+            </div>
         </div>
         <br>
-        <a class="btn btn-info" id="validar" href="{% url 'ajustes' %}">Validar</a>
+        <!-- <a class="btn btn-info" id="validar" href="{% url 'ajustes' %}">Validar</a> -->
+        <div class="row" >
+            <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust" >
+                <!-- <button type="reset" class="btn btn-danger" href="{% url 'home' %}" value="CANCELAR" /> -->
+                <a  class="btn btn-danger" href="{% url 'ajustes' %}" id="boton1">CANCELAR</a>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust" >
+                <!-- <input type="submit" class="btn btn-warning btn-block" id="validar" href="{% url 'ajustes' %}" value="Validar" /> -->
+                <button type="submit" class="btn btn-success" id="btnGuardar" >Validar</button>
+            </div>
+            
+        </div>
         <br>
-        
+        {% endif %}
     </form>
 </div>
+<script src="{% static 'core/js/validacionPago.js' %}"></script>
 {% endblock %}

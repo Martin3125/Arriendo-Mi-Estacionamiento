@@ -5,70 +5,104 @@
 
 {% block head %}
 
-<link href="{% static 'core/css/arriendoEs1.css'%}" rel="stylesheet" type="text/css">
+<link href="{% static 'core/css/arriendoEs.css'%}" rel="stylesheet" type="text/css">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
 
 {% endblock %}
 {% block content %}
 
-<div class="ratio ratio-16x9" >
-
+<div class="ratio ratio-16x9">
     <h1>ARRIENDO</h1>
-    <form id="formRegistro" action="/confirmarArriendo/{{ ubicacion.nombre }}" method="post">
+    <form id="formRegistro" name="formRegistro" action="/confirmarArriendo/{{ ubicacion.nombre }}" method="post">
         {% csrf_token %}
+        <h3> Datos del Estacionamiento</h3>
         <div class="form-group" id="formNombre">
             <label for=" exampleInputEmail1">Nombre: </label>
-            <input type="text" class="form-control"     id="inputNombre" name="nombre" value="{{ ubicacion.nombre }}" readonly > </input>
+            <input type="text" class="form-control" id="inputNombre" name="nombreEs" value="{{ ubicacion.nombre }}"
+                readonly> </input>
         </div>
         <div class="form-group" id="formPrecio">
             <label for="exampleInputPassword1">Latitud: </label>
-            <input type="number" class="form-control"     id="inputPrecio" name="lat" value="{{ubicacion.lat}}" readonly> </input>
+            <input type="number" class="form-control" id="inputLat" name="lat" value="{{ubicacion.lat}}" readonly>
+            </input>
         </div>
         <div class="form-group" id="formPrecio">
             <label for="exampleInputPassword1">Longitud: </label>
-            <input type="number" class="form-control"     id="inputPrecio" name="lng" value="{{ubicacion.lng}}" readonly> </input>
+            <input type="number" class="form-control" id="inputLng" name="lng" value="{{ubicacion.lng}}" readonly>
+            </input>
         </div>
         <div>
             <label for="exampleInputDueño">Dueño email: </label>
-            <input type="text" class="form-control"     id="inputUser" name="dueño" value="{{ubicacion.user}}" readonly> </input>
+            <input type="text" class="form-control" id="inputUser" name="dueño" value="{{ubicacion.user}}" readonly>
+            </input>
         </div>
         <div class="form-group" id="formPrecio">
             <label for="exampleInputPassword1">Fecha publicacion: </label>
-            <input type="text" class="form-control"     id="inputFecha" name="fecha" value="{{ubicacion.fecha}}" readonly> </input>
+            <input type="text" class="form-control" id="inputFecha" name="fecha" value="{{ubicacion.fecha}}" readonly>
+            </input>
         </div>
         <div class="form-group" id="formPrecio">
             <label for="exampleInputPassword1">Valor por hora: </label>
-            <input type="text" class="form-control"     id="inputPrecio" name="precio" value="{{ubicacion.precio}}" readonly> </input>
+            <input type="text" class="form-control" id="inputPrecio" name="precio" value="{{ubicacion.precio}}"
+                readonly> </input>
         </div>
-        <div class="form-group" id="formPrecio">
-            <label for="exampleInputPassword1">Hora de Inicio: </label>
-            <input type="number" class="form-control"  placeholder="HH"   id="inputInicio" name="h_inicio" value="{{ubicacion.h_inicio}}" min="00" max="23"> </input>
-        </div>
-        <div class="form-group" id="formPrecio">
-            <label for="exampleInputPassword1">Hora de Salida: </label>
-            <input type="number" class="form-control"  placeholder="HH"     id="inputSalida" name="h_salida" value="{{ubicacion.h_salida}}" min="00" max="23"> </input>
-        </div>
-        <div class="form-group" id="formPrecio">
-            <label for="exampleInputPassword1">Total a Pagar: </label>
-            <input type="number" class="form-control"      id="inputtPago" name="totalPago" value="{{ubicacion.totalPago}}" readonly></input>
-        </div>
-        {% if "email" in request.session %}
+
         <br>
-        <a  type="submit" class="btn btn-success" id="btnGuardar1">CALCULAR</a>
-        <a  class="btn btn-danger" id="btnGuardar" href="{% url 'home' %}" >CANCELAR</a>
-        <a type="submit" class="btn btn-success" id="btnGuardar" href="{% url 'Pagos' %}">Arrendar</a>
-        {% else %}
-        <br>
-        <a class="btn btn-info" id="eliminarCuenta" href="{% url 'login' %}">Login</a>
-        {% endif %}
+        <div id="CalculaDatos">
+            <h3> Calcula tu Arriendo</h3>
+            <div class="form-group" id="formPrecio">
+                <label for="exampleInputPassword1">Hora de Inicio: </label>
+                <input type="number" class="form-control" placeholder="HH" id="inputInicio" name="h_inicio" min="00"
+                    max="23"> </input>
+            </div>
+            <div class="form-group" id="formPrecio">
+                <label for="exampleInputPassword1">Hora de Salida: </label>
+                <input type="number" class="form-control" placeholder="HH" id="inputSalida" name="h_salida" min="00"
+                    max="23"> </input>
+            </div>
+            <div class="form-group" id="formPrecio">
+                <label for="exampleInputPassword1">Total a Pagar: </label>
+                <input type="number" class="form-control" id="inputtPago" name="totalPago"
+                    value="{{ubicacion.totalPago}}" readonly></input>
+            </div>
+
+            <a class="btn btn-info" id="CALCULAR" onclick="algoritmo();">CALCULAR</a>
+            <br>
+            <br>
+
+            <div id="TusDatos">
+                <h3> Tus datos</h3>
+                <div class="form-group" id="formRut">
+                    <label for="exampleInputPassword1">Rut: </label>
+                    <input type="text" class="form-control" id="inputRut" name="rut" placeholder="12345678-K" required></input>
+                </div>
+                <div class="form-group" id="formPatente">
+                    <label for="exampleInputPassword1">Patente Vehículo: </label>
+                    <input type="text" class="form-control" id="inputPatente" name="patente" placeholder="FK0978" required ></input>
+                </div>
+            </div>
+            {% if "email" in request.session %}
+            <br>
+            <!-- <a class="btn btn-success" id="btnGuardar1" href="{% url 'calcularArriendo' ubicacion.nombre %}">CALCULAR</a> -->
+            <a class="btn btn-danger" id="btnCancelar" href="{% url 'home' %}">CANCELAR</a>
+            <button type="submit" class="btn btn-success" id="btnGuardar">Arrendar</button>
+            {% else %}
+            <br>
+            <a class="btn btn-info" id="eliminarCuenta" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+
+
+
 
         <!--mapa -->
         <div id="map_container"></div>
         <div id="map"></div>
 
-       
-        <script     
+
+        <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUaZKalsm_V3MUSPtRUnYTopFP7nD8XAY&callback=initMap&getCoords%getError&getMarkerCoords"
             async defer></script>
         </script>
@@ -76,6 +110,8 @@
     </form>
 
 
+
 </div>
 <script src="{% static 'core/js/arriendoEsta.js' %}"></script>
+<script src="{% static 'core/js/totalPagar.js' %}"></script>
 {% endblock %}
