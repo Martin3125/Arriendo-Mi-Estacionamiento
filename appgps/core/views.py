@@ -9,7 +9,17 @@ from .models import *
 
 #renderiza el home de la pagina.
 def home(request):
-    return render(request, 'core/home.html')
+    
+    try:
+    
+        contexto = {'arriendos': ArriendoEs.objects.get(user = request.session['email'])}
+        if contexto:
+            print("hay arriendo activo")
+
+    except:
+        contexto ={}
+        print("no hay arriendo activo")
+    return render(request, 'core/home.html',contexto)
 
 #inicio de sesion del usuario registrado
 def login(request):
@@ -209,10 +219,6 @@ def ValidacionDatos(request):
 def Pagos(request):
     contexto1 = {'user' :ArriendoEs.objects.get(user = request.session['email'])}
     return render(request, 'core/Pagos.html',contexto1)
-
-def Pagos1(request):
-    contexto2 = {'cuenta': Cuenta.objects.get(user = request.session['email'])}
-    return render(request, 'core/Pagos.html',contexto2)
     
 def Disponible(request,nombre):
     ubicacion = Ubicacion.objects.get(nombre =nombre)
@@ -250,9 +256,15 @@ def finalizar(request):
     newPago = Pago(id_pago = id_pago, user = user, nombreEs = nombreEs, h_inicio = h_inicio, fecha_Pago = fecha_Pago, totalPago = totalPago)
     newPago.save()
 
-    
+    oldArriendo = ArriendoEs.objects.get(user= request.session['email'])
+    oldArriendo.delete()
+
     oldUbicacion = Ubicacion.objects.get(nombre=nombreEs)
     oldUbicacion.disponible = True
     oldUbicacion.save()
 
     return redirect('home')
+
+def tablaPagos(request):
+    contexto = {'pago': Pago.objects.filter(user = request.session['email'])}
+    return render(request, 'core/tablaPagos.html',contexto)

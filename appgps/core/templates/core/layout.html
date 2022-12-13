@@ -24,14 +24,18 @@
             <img src="{% static 'core/img/logo.png' %}" alt="logo" width="100" id="logo">
         </header>
         {% if "email" in request.session %}
-        <img src="{% static 'core/img/logoPerfil.png' %}" alt="" width="100"><a href="{% url 'perfil' %}" >Perfil</a>
-        <img src="{% static 'core/img/logoAjustes.png' %}" alt="" width="100"><a href="{% url 'Pagos' %}" >Activos</a>
+        <a href="{% url 'perfil' %}" >Perfil</a>
+            {% if arriendos %}
+                <a href="{% url 'Pagos' %}" >Activos</a>
+            {% endif %}
         {% endif %}
-        <img src="{% static 'core/img/logoMapa.png' %}" alt="" width="100"><a href="{% url 'home' %}" >Mapa</a>
-        <img src="{% static 'core/img/logoAjustes.png' %}" alt="" width="100"><a href="{% url 'ajustes' %}" >Ajustes</a>
+        
+        <a href="{% url 'home' %}" >Mapa</a>
+        <a href="{% url 'ajustes' %}" >Ajustes</a>
         
 
-        
+ 
+
 
     </div>
 

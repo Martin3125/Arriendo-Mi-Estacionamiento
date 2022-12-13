@@ -22,7 +22,8 @@
 
             {% if "email" in request.session %}         
                 <a class="btn btn-info" id="misA" href="{% url 'misArriendos' %}">Mis arriendos</a>
-                <a class="btn btn-info" id="pago" href="{% url 'ValidacionDatos' %}">Validación de datos</a> 
+                <a class="btn btn-info" id="pago" href="{% url 'ValidacionDatos' %}">Metodo de Pago</a>
+                <a class="btn btn-info" id="pago" href="{% url 'tablaPagos' %}">Mis transacciones</a> 
                 <a class="btn btn-info" id="cerrar" href="{% url 'cerrarSesion' %}">Cerrar sesión</a>             
             {% else %}
                 <a class="btn btn-info" id="eliminarCuenta" href="{% url 'login' %}">Login</a>

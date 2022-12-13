@@ -43,7 +43,6 @@ urlpatterns = [
   
     #funciones de  Pagos
     path('Pagos/', Pagos, name='Pagos'),
-     path('Pagos1/', Pagos, name='Pagos'),
 
     # #
     # path('arrendar/<nombre>',arrendar   , name="arrendar"),
@@ -53,5 +52,6 @@ urlpatterns = [
     
     path('finalizar/', finalizar, name="finalizar"),
     
+    path('tablaPagos/', tablaPagos, name="tablaPagos"),
 ]
     
